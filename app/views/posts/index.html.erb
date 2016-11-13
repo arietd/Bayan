@@ -1,0 +1,15 @@
+  	<% @posts.each do |post| %>
+		<!-- Body or content of post -->
+		#<%= post.id %><span class="text-muted"><%= time_ago_in_words(post.created_at) %> ago</span>
+		<p>
+		<%= simple_format(post.body) %>
+		</p>
+		
+		</br>
+	<% end %>
+  
+
+
+
+
+
