@@ -5,6 +5,10 @@ class PostsController < ApplicationController
 		@posts = Post.all
 	end
 
+	def index_published
+		@posts = Post.all
+	end
+
 	def new
 		@post = Post.new
 	end
@@ -41,6 +45,16 @@ class PostsController < ApplicationController
 	def destroy
 		@post = Post.find(params[:id])
 		@post.destroy
+
+		redirect_to posts_path
+	end
+
+	#private method
+	def publish
+		@post = Post.find(params[:id])
+		@post.published = true
+		#@post.update(published: true)
+		@post.save
 
 		redirect_to posts_path
 	end

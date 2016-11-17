@@ -1,15 +1,14 @@
   	<% @posts.each do |post| %>
+
+  	<% if post.published == true %>
 		<!-- Body or content of post -->
 		#<%= post.id %><span class="text-muted"><%= time_ago_in_words(post.created_at) %> ago</span>
 		<p>
 		<%= simple_format(post.body) %>
 		</p>
-
-		 <td><%= link_to 'Show', post_path(post) %></td>
-     	 <td><%= link_to 'Edit', edit_post_path(post) %></td>
-     	 <td><%= link_to 'publish', publish_posts_path(post), :method => :put %></td> 
 		
 		</br>
+	<% end %>	
 	<% end %>
   
 

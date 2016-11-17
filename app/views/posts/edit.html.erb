@@ -1,6 +1,39 @@
 <h1>Edit your post</h1>
 
-<%= render 'form' %>
+<div class="form-group">
+<%= form_for @post do |f| %>
+
+	 <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@post.errors.count, "error") %> prohibited
+        this post from being saved:
+      </h2>post
+      <ul>
+        <% @post.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <%= f.label :body %><br>
+    <%= f.text_area :body, class: "form-control", rows: '4' %>
+  </p>
+ 
+ <p>
+ 	<%= f.label :published %><br />
+    <%= f.label :published, "Yes", :value => "true"  %>
+    <%= f.radio_button :published, true %>
+    <%= f.label :published, "No", :value => "false" %>
+    <%= f.radio_button :published, false, :checked => true %>
+ </p>
+  <p>
+    <%= f.submit 'Submit', :class => "btn btn-success form-control" %>
+  </p>
+<% end %>
+</div>
 
 <%= link_to 'Back', posts_path %>
 
