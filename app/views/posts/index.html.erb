@@ -4,6 +4,9 @@
 		<p>
 		<%= simple_format(post.body) %>
 		</p>
+		<p>
+			Tags: <%= post.tag_list %>	
+		</p>
 
 		 <td><%= link_to 'Show', post_path(post) %></td>
      	 <td><%= link_to 'Edit', edit_post_path(post) %></td>

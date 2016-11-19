@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-	before_action :authenticate_user!, except: [:index, :show]
+	before_action :authenticate_user!, except: [:index_published, :show, :new, :create]
 
 	def index
 		@posts = Post.all
@@ -26,7 +26,7 @@ class PostsController < ApplicationController
 		#@post = Post.new(post_params)
  
 		if @post.save
-		   redirect_to @post
+		   redirect_to published_posts_path
 		else
 		   render 'new'
 		end
@@ -61,6 +61,6 @@ class PostsController < ApplicationController
 
 private
 	def post_params
-		params.require(:post).permit(:body, :published)
+		params.require(:post).permit(:body, :published, :tag_list)
 	end
 end

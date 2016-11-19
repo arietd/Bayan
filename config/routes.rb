@@ -5,10 +5,10 @@ Rails.application.routes.draw do
   
   resources :posts do
   	collection do
-    	get "index_published" # generate  get "/products/most_popular"
+    	get "index_published", to: 'posts#index_published', as: 'published'
     	put "publish/:id" , to: 'posts#publish', as: 'publish'
   	end
   end
 
-   root 'posts#index'
+   root 'posts#index_published'
 end
