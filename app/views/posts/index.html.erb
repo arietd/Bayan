@@ -2,14 +2,19 @@
 	<div class="posts">
 	  	<% @posts.each do |post| %>
 			<!-- Body or content of post -->
-			<span class="post-id">#<%= post.id %></span>
+			<span class="post-id">
+			#<%= link_to post.id  , post_path(post) %>	
+			
+				
+			</span>
 			<span class="post-date text-muted">
 			<%= time_ago_in_words(post.created_at) %> ago
 			</span>
 			<p>
 				<%= simple_format(post.body) %>
 			</p>
-				Tags: <%= post.tag_list %>	
+				Tags: 
+				<%= raw post.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
 			</br>
 
 			<%= link_to 'Show', post_path(post) %>

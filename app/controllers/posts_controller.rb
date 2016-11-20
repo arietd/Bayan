@@ -1,8 +1,12 @@
 class PostsController < ApplicationController
-	before_action :authenticate_user!, except: [:index_published, :show, :new, :create]
+	before_action :authenticate_admin!, except: [:index_published, :show, :new, :create]
 
 	def index
-		@posts = Post.all
+		if params[:tag]
+			@posts = Post.tagged_with(params[:tag])
+		else
+			@posts = Post.all
+		end
 	end
 
 	def index_published
@@ -49,7 +53,7 @@ class PostsController < ApplicationController
 		redirect_to posts_path
 	end
 
-	#private method
+	#custom method
 	def publish
 		@post = Post.find(params[:id])
 		@post.published = true
@@ -58,6 +62,8 @@ class PostsController < ApplicationController
 
 		redirect_to posts_path
 	end
+
+	
 
 private
 	def post_params
