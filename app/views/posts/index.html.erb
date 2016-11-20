@@ -1,22 +1,26 @@
-  	<% @posts.each do |post| %>
-		<!-- Body or content of post -->
-		#<%= post.id %><span class="text-muted"><%= time_ago_in_words(post.created_at) %> ago</span>
-		<p>
-		<%= simple_format(post.body) %>
-		</p>
-		<p>
-			Tags: <%= post.tag_list %>	
-		</p>
+<div class ="wrapper" > 
+	<div class="posts">
+	  	<% @posts.each do |post| %>
+			<!-- Body or content of post -->
+			<span class="post-id">#<%= post.id %></span>
+			<span class="post-date text-muted">
+			<%= time_ago_in_words(post.created_at) %> ago
+			</span>
+			<p>
+				<%= simple_format(post.body) %>
+			</p>
+				Tags: <%= post.tag_list %>	
+			</br>
 
-		 <td><%= link_to 'Show', post_path(post) %></td>
-     	 <td><%= link_to 'Edit', edit_post_path(post) %></td>
-     	 <td><%= link_to 'publish', publish_posts_path(post), :method => :put %></td> 
-		
-		</br>
-	<% end %>
-  
+			<%= link_to 'Show', post_path(post) %>
+	     	<%= link_to 'Edit', edit_post_path(post) %>
+	     	<%= link_to 'publish', publish_posts_path(post), :method => :put %>
+			
+			</br>
 
-
+		<% end %>
+	 </div>
+</div>
 
 
 

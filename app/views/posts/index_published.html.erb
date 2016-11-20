@@ -1,15 +1,19 @@
-  	<% @posts.each do |post| %>
+<div class="wrapper">
+  	<div class="posts">
+	  	<% @posts.each do |post| %>
 
-  	<% if post.published == true %>
-		<!-- Body or content of post -->
-		#<%= post.id %><span class="text-muted"><%= time_ago_in_words(post.created_at) %> ago</span>
-		<p>
-		<%= simple_format(post.body) %>
-		</p>
-		
-		</br>
-	<% end %>	
-	<% end %>
+	  	<% if post.published == true %>
+			<!-- Body or content of post -->
+			#<%= post.id %><span class="post-date text-muted"><%= time_ago_in_words(post.created_at) %> ago</span>
+			<p>
+			<%= simple_format(post.body) %>
+			</p>
+			
+			</br>
+		<% end %>	
+		<% end %>
+	</div>
+</div>
   
 
 
