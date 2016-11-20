@@ -1,11 +1,10 @@
-# README
+* Bayan is a anonymous story platform built using Ruby on Rails 5.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* Gems used
+* acts_as_taggable_on - tags
+* devise - authentication
+* boostrap v4 - layout
 
-Things you may want to cover:
-
-* Ruby version
 
 * System dependencies
 
