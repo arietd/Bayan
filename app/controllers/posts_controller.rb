@@ -7,6 +7,8 @@ class PostsController < ApplicationController
 		else
 			@posts = Post.all
 		end
+		@tags = ActsAsTaggableOn::Tag.most_used(10)
+
 	end
 
 	def index_published
@@ -63,6 +65,14 @@ class PostsController < ApplicationController
 		redirect_to posts_path
 	end
 
+	def tag_cloud
+	    @tags = Post.tag_counts_on(:tags)
+	end
+
+	def destroy_unused_tags
+		@tags_to_delete = ActsAsTaggableOn::Tag.where('taggings_count' != 0)
+		@tags_destroy_all
+	end
 	
 
 private

@@ -1,4 +1,7 @@
 <div class="wrapper">
+	<div class="tag_cloud">
+		
+	</div>
   	<div class="posts">
 	  	<% @posts.each do |post| %>
 
@@ -8,6 +11,8 @@
 			<p>
 			<%= simple_format(post.body) %>
 			</p>
+			Tags: 
+				<%= raw post.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
 			
 			</br>
 		<% end %>	

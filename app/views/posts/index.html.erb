@@ -1,4 +1,10 @@
-<div class ="wrapper" > 
+<div class ="wrapper" >
+
+	<div class="tags-container">
+		<% @tags.each do |tag| %>
+			<%= link_to tag.name, tag_path(tag.name) %>
+		<% end %>
+	</div> 
 	<div class="posts">
 	  	<% @posts.each do |post| %>
 			<!-- Body or content of post -->
