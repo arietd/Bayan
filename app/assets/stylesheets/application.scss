@@ -5,37 +5,45 @@ div.wrapper{
 	margin: 0 auto;
 	box-sizing: content-box;
     width: 960px;
+    
+}
+
+.posts-container {
+     padding: 5px;
+     width: 70%;  
+     margin: 0 auto; 
+     font-size: 18px;
 }
 
 .posts{	
-	width: 70%;
-    margin: 0 auto;
-    padding: 0;
-    background-color: lightgrey;
+
     padding: 5px;
+    background-color: #FFF;
 }
+
+
 .tags-container{ 
     width: 70%;
     margin: 0 auto;
-    padding: 0;
     padding: 5px;
+    font-size: 22px;
+    
 }
 
 .post-date{
-    		float: right;
+    float: right;
 }
 
 p {
-    	text-align: left;
+    text-align: left;
 }
 
 .auth {
 	float:right;
 }
 
-.css1 { font-size: 1.0em; }
-.css2 { font-size: 1.2em; }
-.css3 { font-size: 1.4em; }
-.css4 { font-size: 1.6em; }
-
+.pagination {
+    margin: 0 auto;
+    width: 70%;
+}
 

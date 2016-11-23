@@ -19,7 +19,7 @@
 
   <p>
     <%= f.label :tag_list %><br>
-    <%= f.text_field:tag_list, class: "form-control" %>
+    <%= f.text_field :tag_list, value: @post.tag_list.to_s,class: "form-control" %>
   </p>
 
   <p>
@@ -32,7 +32,7 @@
     <%= f.label :published, "Yes", :value => "true"  %>
     <%= f.radio_button :published, true %>
     <%= f.label :published, "No", :value => "false" %>
-    <%= f.radio_button :published, false, :checked => true %>
+    <%= f.radio_button :published, false %>
  </p>
   <p>
     <%= f.submit 'Submit', :class => "btn btn-success form-control" %>

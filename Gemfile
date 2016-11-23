@@ -33,6 +33,9 @@ gem 'devise'
 #as taggable gem
 gem 'acts-as-taggable-on', '~> 4.0'
 
+#pagination gem
+gem 'will_paginate', '~> 3.1.0'
+
 #boostrap gem
 gem 'bootstrap', '~> 4.0.0.alpha5'
 source 'https://rails-assets.org' do

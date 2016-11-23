@@ -1,18 +1,21 @@
 class PostsController < ApplicationController
 	before_action :authenticate_admin!, except: [:index_published, :show, :new, :create]
+	#before_action :user_admin!, except: [:index_published, :show, :new, :create]
+	
+
 
 	def index
 		if params[:tag]
 			@posts = Post.tagged_with(params[:tag])
 		else
-			@posts = Post.all
+			@posts = Post.paginate(:page => params[:page], :per_page => 5)
 		end
-		@tags = ActsAsTaggableOn::Tag.most_used(10)
+		@tags = ActsAsTaggableOn::Tag.most_used(5)
 
 	end
 
 	def index_published
-		@posts = Post.all
+		@posts = Post.where(published: true)
 	end
 
 	def new

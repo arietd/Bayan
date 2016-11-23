@@ -4,8 +4,6 @@
 	</div>
   	<div class="posts">
 	  	<% @posts.each do |post| %>
-
-	  	<% if post.published == true %>
 			<!-- Body or content of post -->
 			#<%= post.id %><span class="post-date text-muted"><%= time_ago_in_words(post.created_at) %> ago</span>
 			<p>
@@ -13,9 +11,7 @@
 			</p>
 			Tags: 
 				<%= raw post.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
-			
-			</br>
-		<% end %>	
+			</br>	
 		<% end %>
 	</div>
 </div>
