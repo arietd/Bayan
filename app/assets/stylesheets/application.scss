@@ -4,13 +4,13 @@
 div.wrapper{
 	margin: 0 auto;
 	box-sizing: content-box;
-    width: 960px;
+    width: 800px;
     
 }
 
 .posts-container {
      padding: 5px;
-     width: 70%;  
+     width: 60%;  
      margin: 0 auto; 
      font-size: 18px;
 }
@@ -23,7 +23,7 @@ div.wrapper{
 
 
 .tags-container{ 
-    width: 70%;
+    width: 60%;
     margin: 0 auto;
     padding: 5px;
     font-size: 22px;
@@ -44,6 +44,15 @@ p {
 
 .pagination {
     margin: 0 auto;
-    width: 70%;
+    width: 60%;
+    display: block;
 }
 
+.post-tags {
+
+}   
+
+.post-actions{
+    float: right;
+    
+}

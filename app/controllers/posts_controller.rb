@@ -1,12 +1,11 @@
 class PostsController < ApplicationController
-	before_action :authenticate_admin!, except: [:index_published, :show, :new, :create]
-	#before_action :user_admin!, except: [:index_published, :show, :new, :create]
-	
+	#before_action :authenticate_admin!, except: [:index_published, :show, :new, :create]
+	before_filter :deny_to_visitors, except: [:index_published, :show, :new, :create]
 
 
 	def index
 		if params[:tag]
-			@posts = Post.tagged_with(params[:tag])
+			@posts = Post.tagged_with(params[:tag]).paginate(:page => params[:page], :per_page => 5)
 		else
 			@posts = Post.paginate(:page => params[:page], :per_page => 5)
 		end
@@ -15,7 +14,9 @@ class PostsController < ApplicationController
 	end
 
 	def index_published
-		@posts = Post.where(published: true)
+		@posts = Post.where(published: true).paginate(:page => params[:page], :per_page => 10)
+
+		@tags = ActsAsTaggableOn::Tag.most_used(5)
 	end
 
 	def new
@@ -81,5 +82,9 @@ class PostsController < ApplicationController
 private
 	def post_params
 		params.require(:post).permit(:body, :published, :tag_list)
+	end
+
+	def deny_to_visitors
+	  redirect_to root_path unless user_signed_in? or admin_signed_in?
 	end
 end
