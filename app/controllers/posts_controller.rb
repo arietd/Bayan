@@ -1,8 +1,6 @@
 class PostsController < ApplicationController
-	#before_action :authenticate_admin!, except: [:index_published, :show, :new, :create]
-	before_filter :deny_to_visitors, except: [:index_published, :show, :new, :create]
-
-
+	before_action :authenticate_user!, except: [:index_published, :show, :new, :create]
+	
 	def index
 		if params[:tag]
 			@posts = Post.tagged_with(params[:tag]).paginate(:page => params[:page], :per_page => 5)
@@ -82,9 +80,5 @@ class PostsController < ApplicationController
 private
 	def post_params
 		params.require(:post).permit(:body, :published, :tag_list)
-	end
-
-	def deny_to_visitors
-	  redirect_to root_path unless user_signed_in? or admin_signed_in?
 	end
 end

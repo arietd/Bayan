@@ -15,17 +15,17 @@
               <%= link_to "Bayan", posts_path, :class => 'navbar-brand' %>
             </div>
             <ul class="nav nav-pills ">
-              <% if admin_signed_in? %>
+              <% if user_signed_in? %>
                 <li class="dropdown auth">
-                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><b><%= current_admin.email %></b></a>
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><b><%= current_user.email %></b></a>
                     <div class="dropdown-menu">
-                        <%= link_to 'Edit profile', edit_admin_registration_path, :class => 'dropdown-item' %> <%= link_to "Logout", destroy_admin_session_path, method: :delete, :class => 'dropdown-item'  %>               
+                        <%= link_to 'Edit profile', edit_user_registration_path, :class => 'dropdown-item' %> <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'dropdown-item'  %>               
                         </div>
                 </li>
               <% else %>
 
-                 <li  class="active auth"><%= link_to "Sign up", new_admin_registration_path, :class => 'nav-link' %></li>
-                 <li  class=" active auth"><%= link_to "Login", new_admin_session_path, :class => 'nav-link' %></li>
+                 <li  class="active auth"><%= link_to "Sign up", new_user_registration_path, :class => 'nav-link' %></li>
+                 <li  class=" active auth"><%= link_to "Login", new_user_session_path, :class => 'nav-link' %></li>
               <% end %>
               <li><%= link_to "Submit new post", new_post_path, :class => 'nav-link' %></li>
             </ul>  
