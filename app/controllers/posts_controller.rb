@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
 	before_action :authenticate_user!, except: [:index_published, :show, :new, :create]
+	load_and_authorize_resource
 	
 	def index
 		if params[:tag]

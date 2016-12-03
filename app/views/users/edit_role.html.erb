@@ -1,0 +1,19 @@
+<h1>Edit your role</h1>
+
+<div class="form-group">
+<%= form_for @user do |f| %>
+
+  <p>
+    <%= f.label :role %><br>
+    <%= f.text_field :role, class: "form-control"%>
+   
+  </p>
+ 
+  <p>
+    <%= f.submit 'Submit', :class => "btn btn-success form-control" %>
+  </p>
+<% end %>
+</div>
+
+<%= link_to 'Back', users_path %>
+

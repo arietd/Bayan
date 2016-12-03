@@ -1,0 +1,45 @@
+<div class ="wrapper" >
+
+
+	<div class="pagination" >
+		<%= will_paginate @users %>
+	</div>
+
+	
+	<table class ="table">
+		<thead>
+		 	<tr>
+		 		<th>Role</th>
+		 		<th>ID</th>
+		 		<th>Email</th>
+		 		
+		 		<th>Last Sign in</th>
+		 		<th>Member Since</th>
+
+		 		<th>Actions</th>
+		 	</tr>
+	 	</thead>
+
+	 	<tbody>
+		  	<% @users.each do |user| %>
+		  	<tr>
+		  		<th><%= user.role %></th>
+		 		<th><%= user.id %></th>
+		 		<th><%= user.email %></th>
+		 		
+		 		<th><%= user.last_sign_in_at %></th>
+		 		<th><%= user.created_at %> </th>
+		 		<th> <%= link_to 'Edit Role', edit_role_users_path(user), class: "btn btn-warning" %></th>
+		 	</tr>
+			<% end %>
+		</tbody>
+	</table>	
+	 
+
+	 <div class = "pagination" >
+		<%= will_paginate @users %>
+	</div>
+</div>
+
+
+
