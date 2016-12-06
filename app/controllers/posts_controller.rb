@@ -4,11 +4,12 @@ class PostsController < ApplicationController
 	
 	def index
 		if params[:tag]
-			@posts = Post.tagged_with(params[:tag]).paginate(:page => params[:page], :per_page => 5)
+			@posts = Post.tagged_with(params[:tag]).paginate(:page => params[:page], :per_page => 5).order(created_at: :desc)
 		else
-			@posts = Post.paginate(:page => params[:page], :per_page => 5)
+			#paginates and orders by newest first
+			@posts = Post.paginate(:page => params[:page], :per_page => 5).order(created_at: :desc)
 		end
-		@tags = ActsAsTaggableOn::Tag.most_used(5)
+		@tags = ActsAsTaggableOn::Tag.most_used(6)
 
 	end
 

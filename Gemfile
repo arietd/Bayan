@@ -37,8 +37,13 @@ gem 'acts-as-taggable-on', '~> 4.0'
 #pagination gem
 gem 'will_paginate', '~> 3.1.0'
 
-#recaptcha
+#recaptcha currently not used
 gem "recaptcha", require: "recaptcha/rails"
+
+#rspec currently not used
+group :development, :test do
+  gem 'rspec-rails', '~> 3.5'
+end
 
 #boostrap gem
 gem 'bootstrap', '~> 4.0.0.alpha5'
