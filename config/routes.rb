@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   end
 
   get 'tags/:tag', to: 'posts#index', as: 'tag'
+  get 'tags_published/:tag', to: 'posts#index_published', as: 'tags_published'
 
   root 'posts#index_published'
 end

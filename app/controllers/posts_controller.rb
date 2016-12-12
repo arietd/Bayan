@@ -14,8 +14,11 @@ class PostsController < ApplicationController
 	end
 
 	def index_published
-		@posts = Post.where(published: true).paginate(:page => params[:page], :per_page => 10)
-
+		if params[:tag]
+			@posts = Post.where(published: true).tagged_with(params[:tag]).paginate(:page => params[:page], :per_page => 5).order(created_at: :desc)
+		else
+			@posts = Post.where(published: true).paginate(:page => params[:page], :per_page => 10).order(created_at: :desc)
+		end
 		@tags = ActsAsTaggableOn::Tag.most_used(5)
 	end
 

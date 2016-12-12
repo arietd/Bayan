@@ -2,7 +2,7 @@
 	
 	<div class="tags-container">
 		<% @tags.each do |tag| %>
-			<%= link_to tag.name, tag_path(tag.name), class: "btn btn-outline-primary" %>
+			<%= link_to tag.name, tags_published_path(tag.name), class: "btn btn-outline-primary" %>
 		<% end %>
 	</div>
 

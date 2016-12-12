@@ -12,7 +12,7 @@
   <body>
       <nav class="navbar navbar-full navbar-light bg-faded">
             <div class="navbar-header">
-              <%= link_to "Bayan", posts_path, :class => 'navbar-brand' %>
+              <%= link_to "Melbourne Anon", published_posts_path, :class => 'navbar-brand' %>
             </div>
             <ul class="nav nav-pills ">
               <% if user_signed_in? %>
@@ -27,7 +27,7 @@
                  <li  class="active auth"><%= link_to "Sign up", new_user_registration_path, :class => 'nav-link' %></li>
                  <li  class=" active auth"><%= link_to "Login", new_user_session_path, :class => 'nav-link' %></li>
               <% end %>
-              <li><%= link_to "Submit new post", new_post_path, :class => 'nav-link' %></li>
+              <li><%= link_to "Submit your story", new_post_path, :class => 'nav-link' %></li>
             </ul>  
             </div>
 
