@@ -5,11 +5,11 @@ class Post < ApplicationRecord
 
 	# not used 
 	# ment for search 
-	# def self.search(search)
-	#   if search
-	#     where('body LIKE ?', "%#{search}%")
-	#   else
-	#     scoped
-	#   end
-	# end
+	def self.search(search)
+	  if search
+	    where('body LIKE ?', "%#{search}%")
+	  else
+	    scoped
+	  end
+	end
 end

@@ -16,6 +16,8 @@ class PostsController < ApplicationController
 	def index_published
 		if params[:tag]
 			@posts = Post.where(published: true).tagged_with(params[:tag]).paginate(:page => params[:page], :per_page => 5).order(created_at: :desc)
+		elsif params[:search]
+			@posts = Post.where(published: true).search(params[:search]).paginate(:page => params[:page], :per_page => 5).order(created_at: :desc)
 		else
 			@posts = Post.where(published: true).paginate(:page => params[:page], :per_page => 10).order(created_at: :desc)
 		end
