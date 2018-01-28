@@ -36,6 +36,13 @@
 				<%= link_to 'Read', post_path(post), class: "btn btn-secondary" %>
 		     	<%= link_to 'Edit', edit_post_path(post), class: "btn btn-info" %>
 		     	<%= link_to 'publish', publish_posts_path(post), :method => :put, class: "btn btn-success" %>
+		     	<%= link_to 'upvote', like_post_path(post), :method => :put, class: "btn btn-info" %>
+		     	<%= link_to 'downvote', dislike_post_path(post), :method => :put, class: "btn btn-info" %>
+	     	</div>
+
+	     	<div>
+	     		<%= post.get_upvotes.size %>
+	     		<%= post.get_downvotes.size %>
 	     	</div>
 			
 			</br>

@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-	before_action :authenticate_user!, except: [:index_published, :show, :new, :create]
+	before_action :authenticate_user!, except: [:index_published, :show, :new, :create, :upvote]
 	load_and_authorize_resource
 	
 	def index
@@ -65,6 +65,9 @@ class PostsController < ApplicationController
 	end
 
 	#custom method
+
+
+	# make the post public
 	def publish
 		@post = Post.find(params[:id])
 		@post.published = true
@@ -74,6 +77,8 @@ class PostsController < ApplicationController
 		redirect_to posts_path
 	end
 
+
+	## TAGS
 	def tag_cloud
 	    @tags = Post.tag_counts_on(:tags)
 	end
@@ -82,7 +87,30 @@ class PostsController < ApplicationController
 		@tags_to_delete = ActsAsTaggableOn::Tag.where('taggings_count' != 0)
 		@tags_destroy_all
 	end
-	
+	########
+
+	## Vote system
+
+	def upvote
+		if !current_user.liked? @post
+			@post.liked_by current_user
+		elsif current_user.liked?@post
+			@post.unliked_by current_user
+		end
+	end
+	def downvote
+		if !current_user.disliked? @post
+			@post.disliked_by current_user
+		elsif current_user.disliked?@post
+			@post.undisliked_by current_user
+		end
+	end
+
+	#dontvote later
+
+	###########
+
+
 
 private
 	def post_params

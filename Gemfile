@@ -36,8 +36,17 @@ gem 'cancancan'
 #as taggable gem
 gem 'acts-as-taggable-on', '~> 4.0'
 
+#as votable gem
+gem 'acts_as_votable', '~> 0.11.1'
+
+
 #pagination gem
 gem 'will_paginate', '~> 3.1.0'
+
+
+#elastic
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
 
 #recaptcha currently not used
 gem "recaptcha", require: "recaptcha/rails"

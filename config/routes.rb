@@ -11,6 +11,13 @@ Rails.application.routes.draw do
     	get "index_published", to: 'posts#index_published', as: 'published'
     	put "publish/:id" , to: 'posts#publish', as: 'publish'
   	end
+    member do
+      put "like", to: "posts#upvote"
+      put "dislike", to: "posts#downvote"
+    end
+    # member do
+    #   put 'like' => 'post#upvote'
+    # end
   end
 
   get 'tags/:tag', to: 'posts#index', as: 'tag'
