@@ -32,17 +32,41 @@
 				</div>
 			</br>
 
+
+
+
 			<div class="post-actions">
+				<% if current_user.liked? post %>
+				  
+		     		<%= link_to 'upvote', like_post_path(post), :method => :put, class: "alert alert-success" %>
+				<% else %>
+				  
+		     		<%= link_to 'upvote', like_post_path(post), :method => :put, class: "alert alert-info" %>
+				<% end %>
+				<% if current_user.disliked? post %>
+				  
+		     		<%= link_to 'downvote', dislike_post_path(post), :method => :put, class: "alert alert-danger" %>
+				<% else %>
+		     		<%= link_to 'downvote', dislike_post_path(post), :method => :put, class: "alert alert-info" %>
+				<% end %>
+
+
+
 				<%= link_to 'Read', post_path(post), class: "btn btn-secondary" %>
 		     	<%= link_to 'Edit', edit_post_path(post), class: "btn btn-info" %>
-		     	<%= link_to 'publish', publish_posts_path(post), :method => :put, class: "btn btn-success" %>
-		     	<%= link_to 'upvote', like_post_path(post), :method => :put, class: "btn btn-info" %>
-		     	<%= link_to 'downvote', dislike_post_path(post), :method => :put, class: "btn btn-info" %>
+		     	
+
+		     	<% if post.published == true %>
+		     		<%= link_to 'unpublish', unpublish_posts_path(post), :method => :put, class: "btn btn-warning" %>
+		     	<% else %>
+		     		<%= link_to 'publish', publish_posts_path(post), :method => :put, class: "btn btn-success" %>
+		     	<% end %>
+
+		     	
 	     	</div>
 
 	     	<div>
-	     		<%= post.get_upvotes.size %>
-	     		<%= post.get_downvotes.size %>
+	     		<%= post.weighted_score %>
 	     	</div>
 			
 			</br>

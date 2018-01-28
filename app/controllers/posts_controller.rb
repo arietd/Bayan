@@ -77,6 +77,15 @@ class PostsController < ApplicationController
 		redirect_to posts_path
 	end
 
+	def unpublish
+		@post = Post.find(params[:id])
+		@post.published = false
+		#@post.update(published: true)
+		@post.save
+
+		redirect_to posts_path
+	end
+
 
 	## TAGS
 	def tag_cloud

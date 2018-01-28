@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   	collection do
     	get "index_published", to: 'posts#index_published', as: 'published'
     	put "publish/:id" , to: 'posts#publish', as: 'publish'
+      put "unpublish/:id" , to: 'posts#unpublish', as: 'unpublish'
   	end
     member do
       put "like", to: "posts#upvote"
