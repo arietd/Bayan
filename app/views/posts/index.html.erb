@@ -24,6 +24,7 @@
 			<p calss="post-content">
 				<%= simple_format(post.body) %>
 			</p> 
+			<%= link_to 'Read more', post_path(post)%>
 
 			<div class= "post-tags">
 				<% post.tag_list.each do |tag| %>
@@ -36,28 +37,36 @@
 
 
 			<div class="post-actions">
+			
 				<% if current_user.liked? post %>
 				  
-		     		<%= link_to 'upvote', like_post_path(post), :method => :put, class: "alert alert-success" %>
+		     		<%= link_to 'upvote', upvote_post_path(post),method: :put, remote: true,
+                        class: "alert alert-warning upvote-btn" %>
 				<% else %>
 				  
-		     		<%= link_to 'upvote', like_post_path(post), :method => :put, class: "alert alert-info" %>
+		     		<%= link_to 'upvote', upvote_post_path(post),method: :put, remote: true,
+                        
+                        class: "alert alert-info upvote-btn" %>
 				<% end %>
 				<% if current_user.disliked? post %>
 				  
-		     		<%= link_to 'downvote', dislike_post_path(post), :method => :put, class: "alert alert-danger" %>
+		     		<%= link_to 'downvote', downvote_post_path(post), method: :put, remote: true,
+                       
+		     		class: "alert alert-warning downvote-btn" %>
 				<% else %>
-		     		<%= link_to 'downvote', dislike_post_path(post), :method => :put, class: "alert alert-info" %>
+		     		<%= link_to 'downvote', downvote_post_path(post),method: :put, remote: true,
+                        
+                        class: "alert alert-info downvote-btn" %>
 				<% end %>
 
 
 
-				<%= link_to 'Read', post_path(post), class: "btn btn-secondary" %>
+				
 		     	<%= link_to 'Edit', edit_post_path(post), class: "btn btn-info" %>
 		     	
 
 		     	<% if post.published == true %>
-		     		<%= link_to 'unpublish', unpublish_posts_path(post), :method => :put, class: "btn btn-warning" %>
+		     		<%= link_to 'unpublish', unpublish_posts_path(post), :method => :put, class: "btn btn-danger" %>
 		     	<% else %>
 		     		<%= link_to 'publish', publish_posts_path(post), :method => :put, class: "btn btn-success" %>
 		     	<% end %>
@@ -66,7 +75,7 @@
 	     	</div>
 
 	     	<div>
-	     		<%= post.weighted_score %>
+	     		<span class='likes-count' ><%= post.weighted_score %></span>
 	     	</div>
 			
 			</br>

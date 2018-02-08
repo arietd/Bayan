@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
 	before_action :authenticate_user!, except: [:index_published, :show, :new, :create, :upvote]
+	respond_to :js, :json, :html
 	load_and_authorize_resource
 	
 	def index
@@ -99,13 +100,16 @@ class PostsController < ApplicationController
 	########
 
 	## Vote system
-
 	def upvote
 		if !current_user.liked? @post
 			@post.liked_by current_user
 		elsif current_user.liked?@post
 			@post.unliked_by current_user
 		end
+		respond_to do |format|
+	    format.html { redirect_to :back }
+	    format.js
+	    end
 	end
 	def downvote
 		if !current_user.disliked? @post
@@ -113,6 +117,10 @@ class PostsController < ApplicationController
 		elsif current_user.disliked?@post
 			@post.undisliked_by current_user
 		end
+		respond_to do |format|
+	    format.html { redirect_to :back }
+	    format.js
+	    end
 	end
 
 	#dontvote later

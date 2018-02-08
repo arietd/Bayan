@@ -17,14 +17,40 @@
     </div>
   <% end %>
 
-  <p>
-    <%= f.label :tag_list %><br>
-    <%= f.text_field :tag_list, value: @post.tag_list.to_s, class: "form-control"%>
-  </p>
+  
 
   <p>
     <%= f.label :body %><br>
     <%= f.text_area :body, class: "form-control", rows: '4' %>
+  </p>
+
+  <p>
+    
+
+   <!--  <%= f.label :tag_list %><br>
+    <%= f.text_field :tag_list, value: @post.tag_list.to_s, class: "form-control"%>
+ -->
+
+
+    
+      <%= f.label :tag_list %>
+      <%= label_tag(:tag_list, "Politics") %>
+      <%= f.check_box :tag_list, { :multiple => true }, 'politics', nil %>
+      <%= label_tag(:tag_list, "Science") %>
+      <%= f.check_box :tag_list, { :multiple => true }, 'science', nil %>
+      <%= label_tag(:tag_list, "Social") %>
+      <%= f.check_box :tag_list, { :multiple => true }, 'social', nil %>
+      <%= label_tag(:tag_list, "Sport") %>
+      <%= f.check_box :tag_list, { :multiple => true }, 'sports', nil %>
+      <%= label_tag(:tag_list, "Lorem") %>
+      <%= f.check_box :tag_list, { :multiple => true }, 'lorem', nil %>
+      <%= label_tag(:tag_list, "Ipsum") %>
+      <%= f.check_box :tag_list, { :multiple => true }, 'ipsum', nil %>
+      
+
+
+
+
   </p>
  
  <p>
@@ -33,6 +59,7 @@
     <%= f.radio_button :published, true %>
     <%= f.label :published, "No", :value => "false" %>
     <%= f.radio_button :published, false %>
+
  </p>
   <p>
     <%= f.submit 'Submit', :class => "btn btn-success form-control" %>

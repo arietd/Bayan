@@ -13,8 +13,8 @@ Rails.application.routes.draw do
       put "unpublish/:id" , to: 'posts#unpublish', as: 'unpublish'
   	end
     member do
-      put "like", to: "posts#upvote"
-      put "dislike", to: "posts#downvote"
+      put "upvote", to: "posts#upvote"
+      put "downvote", to: "posts#downvote"
     end
     # member do
     #   put 'like' => 'post#upvote'
