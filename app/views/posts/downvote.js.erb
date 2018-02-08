@@ -1,6 +1,7 @@
 <% if current_user.disliked? @post %>
- $('.downvote-btn').removeClass('alert-info').addClass('alert-warning')
+ $('.downvote-btn-<%= @post.id %>').removeClass('alert-info').addClass('alert-warning')
+ $('.upvote-btn-<%= @post.id %>').removeClass('alert-warning')
 	<% else %>
- $('.downvote-btn').removeClass('alert-warning').addClass('alert-info')
+ $('.downvote-btn-<%= @post.id %>').removeClass('alert-warning').addClass('alert-info')
 	<% end %>
-$('.likes-count').html("<%=@post.get_upvotes.size %>")
+$('.likes-count-<%= @post.id %>').html("<%=@post.weighted_score %>")

@@ -37,28 +37,33 @@
 
 
 			<div class="post-actions">
-			
+						
+						
+				<div class= "voting-div">
 				<% if current_user.liked? post %>
 				  
-		     		<%= link_to 'upvote', upvote_post_path(post),method: :put, remote: true,
-                        class: "alert alert-warning upvote-btn" %>
+		     		<%= link_to '', upvote_post_path(post),method: :put, remote: true,
+                        class: "fa fa-angle-up alert-warning upvote-btn-#{post.id}", id: post.id%>
 				<% else %>
 				  
-		     		<%= link_to 'upvote', upvote_post_path(post),method: :put, remote: true,
+		     		<%= link_to '', upvote_post_path(post),method: :put, remote: true,
                         
-                        class: "alert alert-info upvote-btn" %>
+                        class: "fa fa-angle-up alert-info upvote-btn-#{post.id}", id: post.id  %>
 				<% end %>
+				<span class='likes-count-<%= post.id %>' id: post.id ><%= post.weighted_score %></span>
+
+
 				<% if current_user.disliked? post %>
 				  
-		     		<%= link_to 'downvote', downvote_post_path(post), method: :put, remote: true,
+		     		<%= link_to '', downvote_post_path(post), method: :put, remote: true,
                        
-		     		class: "alert alert-warning downvote-btn" %>
+		     		class: "fa fa-angle-down alert-warning downvote-btn-#{post.id}" , id: post.id%>
 				<% else %>
-		     		<%= link_to 'downvote', downvote_post_path(post),method: :put, remote: true,
+		     		<%= link_to '', downvote_post_path(post),method: :put, remote: true,
                         
-                        class: "alert alert-info downvote-btn" %>
+                        class: "fa fa-angle-down alert-info downvote-btn-#{post.id}", id: post.id %>
 				<% end %>
-
+			</div>
 
 
 				
@@ -72,10 +77,8 @@
 		     	<% end %>
 
 		     	
-	     	</div>
-
-	     	<div>
-	     		<span class='likes-count' ><%= post.weighted_score %></span>
+	     	
+	     		
 	     	</div>
 			
 			</br>
