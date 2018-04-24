@@ -14,13 +14,27 @@ class PostsController < ApplicationController
 
 	end
 
-	def index_published
+	def top_last_n_hours(hoursN = 24)
 		if params[:tag]
-			@posts = Post.where(published: true).tagged_with(params[:tag]).paginate(:page => params[:page], :per_page => 5).order(created_at: :desc)
-		elsif params[:search]
-			@posts = Post.where(published: true).search(params[:search]).paginate(:page => params[:page], :per_page => 5).order(created_at: :desc)
+			@posts = Post.where('created_at > ?', hoursN.hours.ago).tagged_with(params[:tag]).paginate(:page => params[:page], :per_page => 5).order(created_at: :desc)
 		else
-			@posts = Post.where(published: true).paginate(:page => params[:page], :per_page => 10).order(created_at: :desc)
+			#paginates and orders by newest first
+			@posts = Post.where('created_at > ?', hoursN.hours.ago).paginate(:page => params[:page], :per_page => 5).order(created_at: :desc)
+		end
+		@tags = ActsAsTaggableOn::Tag.most_used(6)
+	end
+
+	def index_published
+		# this is the news feed
+
+		# last 24 hours
+		# most upvoted posts
+		if params[:tag]
+			@posts = Post.where('created_at > ?', 24.hours.ago).where(published: true).tagged_with(params[:tag]).paginate(:page => params[:page], :per_page => 5).order(cached_votes_score: :desc, created_at: :desc)
+		elsif params[:search]
+			@posts = Post.where('created_at > ?', 24.hours.ago).where(published: true).search(params[:search]).paginate(:page => params[:page], :per_page => 5).order(cached_votes_score: :desc, created_at: :desc)
+		else
+			@posts = Post.where('created_at > ?', 24.hours.ago).where(published: true).paginate(:page => params[:page], :per_page => 10).order(cached_votes_score: :desc, created_at: :desc)
 		end
 		@tags = ActsAsTaggableOn::Tag.most_used(5)
 	end
