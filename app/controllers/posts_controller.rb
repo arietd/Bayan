@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-	before_action :authenticate_user!, except: [:index_published, :show, :new, :create, :upvote]
+	before_action :authenticate_user!, except: [:index_published, :show, :create, :upvote]
 	respond_to :js, :json, :html
 	load_and_authorize_resource
 	
@@ -30,11 +30,11 @@ class PostsController < ApplicationController
 		# last 24 hours
 		# most upvoted posts
 		if params[:tag]
-			@posts = Post.where('created_at > ?', 24.hours.ago).where(published: true).tagged_with(params[:tag]).paginate(:page => params[:page], :per_page => 5).order(cached_votes_score: :desc, created_at: :desc)
+			@posts = Post.where(published: true).tagged_with(params[:tag]).paginate(:page => params[:page], :per_page => 5).order(cached_votes_score: :desc, created_at: :desc)
 		elsif params[:search]
-			@posts = Post.where('created_at > ?', 24.hours.ago).where(published: true).search(params[:search]).paginate(:page => params[:page], :per_page => 5).order(cached_votes_score: :desc, created_at: :desc)
+			@posts = Post.where(published: true).search(params[:search]).paginate(:page => params[:page], :per_page => 5).order(cached_votes_score: :desc, created_at: :desc)
 		else
-			@posts = Post.where('created_at > ?', 24.hours.ago).where(published: true).paginate(:page => params[:page], :per_page => 10).order(cached_votes_score: :desc, created_at: :desc)
+			@posts = Post.where(published: true).paginate(:page => params[:page], :per_page => 10).order(cached_votes_score: :desc, created_at: :desc)
 		end
 		@tags = ActsAsTaggableOn::Tag.most_used(5)
 	end
@@ -136,11 +136,6 @@ class PostsController < ApplicationController
 	    format.js
 	    end
 	end
-
-	#dontvote later
-
-	###########
-
 
 
 private
